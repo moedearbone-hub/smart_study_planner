@@ -25,5 +25,25 @@ def main():
             print("Invalid choice. Please try again.")
     # add_session()
 def add_session():
+    subject = input("Enter the subject for the study session: ")
+    topic = input("Enter the topic for the study session: ")
+    date = input("Enter the date for the study session (YYYY-MM-DD): ")
+    duration = input("Enter the duration of the study session (in minutes): ")
+    while True:
+        try:
+            duration = int(duration)
+            if duration <= 0:
+                raise ValueError("Duration must be a positive integer.")
+            break
+        except ValueError as k:
+            print(f"Invalid input: {k}")
+            duration = input("Please enter a valid duration (in minutes): ")
+    # store each session as a dictionary in a list
+    session = {
+        "subject": subject,
+        "topic": topic,
+        "date": date,
+        "duration": duration
+    }
     # Function to add a new study session
     pass        
