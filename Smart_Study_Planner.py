@@ -38,6 +38,7 @@ def add_session():
         except ValueError as k:
             print(f"Invalid input: {k}")
             duration = input("Please enter a valid duration (in minutes): ")
+
     # store each session as a dictionary in a list
     session = {
         "subject": subject,
@@ -45,5 +46,60 @@ def add_session():
         "date": date,
         "duration": duration
     }
-    # Function to add a new study session
-    pass        
+    #classify_session(duration)
+    def classify_session(duration):
+        if duration < 30:
+            return "Short"
+        elif 30 <= duration <= 60:
+            return "Medium"
+        else:
+            return "Long"
+        
+    # reused automatically wherever the function is called
+    session["classification"] = classify_session(duration)
+    # view_sessions()  
+    # function that displays every logged session in a neatly formatted table
+    def view_sessions():
+        if not sessions:
+            print("No study sessions logged yet.")
+            return
+        print("\nLogged Study Sessions:")
+        print("{:<15} {:<20} {:<12} {:<10} {:<15}".format("Subject", "Topic", "Date", "Duration", "Classification"))
+        print("-" * 75)
+        for session in sessions:
+            print("{:<15} {:<20} {:<12} {:<10} {:<15}".format(
+                session["subject"], session["topic"], session["date"], session["duration"], session["classification"]
+            ))
+      
+
+
+   # search_by_subject(subject)
+   # function that lets the user type in a subject and returns all the sessions logged under that subject along with their details like date, duration, and classification
+   def search_by_subject(subject):
+    found_sessions = [session for session in sessions if session["subject"] == subject]
+    if not found_sessions:
+        print(f"No study sessions found for subject: {subject}")
+        return
+    print(f"\nStudy Sessions for Subject: {subject}")
+    print("{:<15} {:<20} {:<12} {:<10} {:<15}".format("Subject", "Topic", "Date", "Duration", "Classification"))
+    print("-" * 75)
+    for session in found_sessions:
+        print("{:<15} {:<20} {:<12} {:<10} {:<15}".format(
+            session["subject"], session["topic"], session["date"], session["duration"], session["classification"]
+        ))
+def search_by_subject(subject):
+    found_sessions = [session for session in sessions if session["subject"] == subject]
+
+
+# study_statistics()
+def study_statistics():
+    if not sessions:
+        print("No study sessions logged yet.")
+        return
+    total_sessions = len(sessions)
+    total_duration = sum(session["duration"] for session in sessions)
+    average_duration = total_duration / total_sessions
+    print("\nStudy Statistics:")
+    print(f"Total Study Sessions: {total_sessions}")
+    print(f"Total Duration: {total_duration} minutes")
+    print(f"Average Duration per Session: {average_duration:.2f} minutes")
