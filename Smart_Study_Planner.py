@@ -103,3 +103,4 @@ def study_statistics():
     print(f"Total Study Sessions: {total_sessions}")
     print(f"Total Duration: {total_duration} minutes")
     print(f"Average Duration per Session: {average_duration:.2f} minutes")
+    
