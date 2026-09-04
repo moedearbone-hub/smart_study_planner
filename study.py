@@ -1,9 +1,12 @@
+"""Smart Study_Planner program"""
 DATA_FILE = "study_sessions.txt"
 sessions = []
 
 
 # display_menu()
 def display_menu():
+    """Displays the main menu of the Smart_Study_Planner program.
+    """
     print("\nSmart Study Planner Menu:")
     print("1. Add a new study session")
     print("2. View all study sessions")
@@ -14,6 +17,8 @@ def display_menu():
 
 # main()
 def main():
+    """"The main function of the Smart_Study_Planner program.
+    It displays the menu, handles user input, and performs actions based on the user's choice."""
     load_sessions()
 
     while True:
@@ -30,8 +35,7 @@ def main():
             subject = input(
                 "Enter the subject of the session to mark as completed: "
             )
-            mark_completed(subject)
-
+          
         elif choice == "4":
             study_statistics()
 
@@ -40,10 +44,6 @@ def main():
             print("Exiting the Smart Study Planner. Goodbye!")
             break
 
-        elif choice == "7":
-            save_sessions()
-            print("Exiting the Smart Study Planner. Goodbye!")
-            break
 
         else:
             print("Invalid choice. Please try again.")
@@ -51,6 +51,8 @@ def main():
 
 # add_session()
 def add_session():
+    """Adds a new study session to the list of sessions.
+    It prompts the user for the subject, topic, date, and duration of the session,"""
     subject = input("Enter the subject for the study session: ")
     topic = input("Enter the topic for the study session: ")
     date = input("Enter the date for the study session (YYYY-MM-DD): ")
@@ -92,6 +94,8 @@ def add_session():
 
 # classify_session()
 def classify_session(duration):
+    """Classifies the study session based on its duration.
+    It returns a string indicating whether the session is 'Short', 'Medium', or 'Long"""
     if duration < 30:
         return "Short"
     elif duration <= 60:
@@ -102,20 +106,14 @@ def classify_session(duration):
 
 # view_sessions()
 def view_sessions():
+    """Displays all the study sessions logged in the program."""
     if not sessions:
         print("No study sessions logged yet.")
         return
 
     print("\nAll Study Sessions:")
 
-    print("{:<15} {:<20} {:<12} {:<10} {:<15} {:<12}".format(
-        "Subject",
-        "Topic",
-        "Date",
-        "Duration",
-        "Classification",
-        "Status"
-    ))
+    print(f"{'Subject':<15} {'Topic':<20} {'Date':<12} {'Duration':<10} {'Classification':<15} {'Status':<12}")
 
     print("-" * 90)
 
@@ -125,18 +123,12 @@ def view_sessions():
         else:
             status = "Pending"
 
-        print("{:<15} {:<20} {:<12} {:<10} {:<15} {:<12}".format(
-            session["subject"],
-            session["topic"],
-            session["date"],
-            session["duration"],
-            session["classification"],
-            status
-        ))
+        print(f"{session['subject']:<15} {session['topic']:<20} {session['date']:<12} {session['duration']:<10} {session['classification']:<15} {status:<12}")
 
 
 # search_by_subject()
 def search_by_subject(subject):
+    """Searches for study sessions by subject and displays the results."""
     found_sessions = []
 
     for session in sessions:
@@ -164,39 +156,9 @@ def search_by_subject(subject):
             f"Status: {status}"
         )
 
-
-# mark_completed()
-def mark_completed(subject):
-    found = False
-
-    for session in sessions:
-        if session["subject"].lower() == subject.lower():
-            session["completed"] = True
-            found = True
-
-    if found:
-        print(f"Sessions for {subject} marked as completed.")
-    else:
-        print(f"No study sessions found for subject: {subject}")
-
-
-# delete_session()
-def delete_session(subject):
-    found = False
-
-    for session in sessions[:]:
-        if session["subject"].lower() == subject.lower():
-            sessions.remove(session)
-            found = True
-
-    if found:
-        print(f"Sessions for {subject} deleted successfully.")
-    else:
-        print(f"No study sessions found for subject: {subject}")
-
-
 # study_statistics()
 def study_statistics():
+    """Calculates and displays statistics about the study sessions."""
     if not sessions:
         print("No study sessions logged yet.")
         return
@@ -225,6 +187,7 @@ def study_statistics():
 
 # save_sessions()
 def save_sessions():
+    """Saves the study sessions to a data file."""
     with open(DATA_FILE, "w", encoding="utf-8") as file:
         for session in sessions:
             line = (
@@ -243,6 +206,7 @@ def save_sessions():
 
 # load_sessions()
 def load_sessions():
+    """Loads study sessions from the data file into the sessions list."""
     try:
         with open(DATA_FILE, "r", encoding="utf-8") as file:
 
@@ -280,4 +244,4 @@ def load_sessions():
 
 # Run the program
 if __name__ == "__main__":
-    main()
+     main()
