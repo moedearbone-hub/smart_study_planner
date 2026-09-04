@@ -32,7 +32,7 @@ def main():
         elif choice == "3":
             subject = input("Enter the subject of the session to mark as completed: ")
             search_by_subject(subject)
-            mark_session_completed()
+        
         elif choice == "4":
             study_statistics()
         elif choice == "5":
