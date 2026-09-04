@@ -27,32 +27,24 @@ def main():
 
         if choice == "1":
             add_session()
-
         elif choice == "2":
             view_sessions()
-
         elif choice == "3":
-            subject = input(
-                "Enter the subject of the session to mark as completed: "
-            )
-          
+            subject = input("Enter the subject of the session to mark as completed: ")
+            search_by_subject(subject)
+            mark_session_completed()
         elif choice == "4":
             study_statistics()
-
         elif choice == "5":
             save_sessions()
-            print("Exiting the Smart Study Planner. Goodbye!")
+            print("Exiting the program. Goodbye!")
             break
-
-
         else:
             print("Invalid choice. Please try again.")
 
-
 # add_session()
 def add_session():
-    """Adds a new study session to the list of sessions.
-    It prompts the user for the subject, topic, date, and duration of the session,"""
+    """Adds a new study session to the list of sessions."""
     subject = input("Enter the subject for the study session: ")
     topic = input("Enter the topic for the study session: ")
     date = input("Enter the date for the study session (YYYY-MM-DD): ")
