@@ -1,2 +1,0 @@
-englisgh,adverbs,23/05/2026,30,Medium,False
-math,algebra,2003/06/31,60,Medium,False

@@ -1,4 +1,4 @@
-"""Smart Study_Planner program"""
+"""Smart_Study_Planner program"""
 DATA_FILE = "study_sessions.txt"
 sessions = []
 
@@ -32,7 +32,6 @@ def main():
         elif choice == "3":
             subject = input("Enter the subject of the session to mark as completed: ")
             search_by_subject(subject)
-        
         elif choice == "4":
             study_statistics()
         elif choice == "5":
@@ -83,11 +82,9 @@ def add_session():
 
     print("Study session added successfully!")
 
-
 # classify_session()
 def classify_session(duration):
-    """Classifies the study session based on its duration.
-    It returns a string indicating whether the session is 'Short', 'Medium', or 'Long"""
+    """Classifies the study session based on its duration."""
     if duration < 30:
         return "Short"
     elif duration <= 60:
@@ -105,7 +102,14 @@ def view_sessions():
 
     print("\nAll Study Sessions:")
 
-    print(f"{'Subject':<15} {'Topic':<20} {'Date':<12} {'Duration':<10} {'Classification':<15} {'Status':<12}")
+    print(
+        f"{'Subject':<15}"
+        f" {'Topic':<20}"
+        f"{'Date':<12}"
+        f"{'Duration':<10}"
+        f"{'Classification':<15}"
+        f"{'Status':<12}"
+    )
 
     print("-" * 90)
 
@@ -115,7 +119,14 @@ def view_sessions():
         else:
             status = "Pending"
 
-        print(f"{session['subject']:<15} {session['topic']:<20} {session['date']:<12} {session['duration']:<10} {session['classification']:<15} {status:<12}")
+        print(
+            f"{session['subject']:<15}"
+            f"{session['topic']:<20}"
+            f"{session['date']:<12}"
+            f"{session['duration']:<10}"
+            f"{session['classification']:<15}"
+            f"{status:<12}"
+        )
 
 
 # search_by_subject()
@@ -236,4 +247,5 @@ def load_sessions():
 
 # Run the program
 if __name__ == "__main__":
-     main()
+    main()
+   
